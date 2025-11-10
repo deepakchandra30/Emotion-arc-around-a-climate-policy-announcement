@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+outputs/
+data/processed/
+data/raw/gdelt_raw.jsonl
+data/lexicons/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt
