@@ -50,7 +50,13 @@ def main(cfg_path):
         })
 
     df = pd.DataFrame(rows)
-    df.sort_values("date", inplace=True)
+    if not rows:
+        # Create empty DataFrame with expected schema to avoid downstream errors
+        df = pd.DataFrame(columns=[
+            "id","date","period","domain","text","tokens","entities"
+        ])
+    else:
+        df.sort_values("date", inplace=True)
     df.to_pickle(out_dir / "processed.pkl")
     print(f"Processed documents: {len(df)} -> {out_dir/'processed.pkl'}")
 

@@ -1,0 +1,3 @@
+period,anger,fear,trust,hope_proxy,token_count,anger_per_1k_tokens,fear_per_1k_tokens,trust_per_1k_tokens,hope_proxy_per_1k_tokens
+post,0,1,5,12,34,0.0,29.41176470588235,147.05882352941177,352.94117647058823
+pre,0,1,3,7,34,0.0,29.41176470588235,88.23529411764706,205.88235294117646

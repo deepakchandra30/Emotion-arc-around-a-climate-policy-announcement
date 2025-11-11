@@ -1,4 +1,4 @@
-import requests, argparse
+import requests, argparse, time
 from datetime import datetime, timedelta
 from pathlib import Path
 from tqdm import tqdm
@@ -16,7 +16,7 @@ def build_query_string(keywords):
     # Simplicity: join with OR operator.
     return "+OR+".join(parts)
 
-def fetch_chunk(query, start_dt, end_dt, max_records):
+def fetch_chunk(query, start_dt, end_dt, max_records, max_retries=5):
     params = {
         "query": query,
         "mode": "ArtList",
@@ -25,10 +25,32 @@ def fetch_chunk(query, start_dt, end_dt, max_records):
         "maxrecords": max_records,
         "format": "json"
     }
-    r = requests.get(BASE_URL, params=params, timeout=30)
-    r.raise_for_status()
-    j = r.json()
-    return j.get("articles", [])
+    backoff = 2
+    for attempt in range(max_retries):
+        try:
+            r = requests.get(BASE_URL, params=params, timeout=30)
+            if r.status_code == 429:
+                # rate limited
+                wait = backoff ** attempt
+                time.sleep(wait)
+                continue
+            r.raise_for_status()
+            j = r.json()
+            return j.get("articles", [])
+        except requests.RequestException as e:
+            # transient error, backoff and retry
+            wait = backoff ** attempt
+            time.sleep(wait)
+            last_err = e
+            continue
+    # If we got here, give up this window
+    try:
+        Path("data/raw/fetch_errors").mkdir(parents=True, exist_ok=True)
+        with open(Path("data/raw/fetch_errors")/f"{start_dt.strftime('%Y%m%d')}.err.txt", "a", encoding="utf-8") as f:
+            f.write(f"Failed window {start_dt} - {end_dt}: {str(last_err)}\n")
+    except Exception:
+        pass
+    return []
 
 def main(config_path):
     cfg = load_config(config_path)
@@ -60,6 +82,8 @@ def main(config_path):
             a["period"] = "pre" if art_date < event_date else "post"
         if articles:
             write_jsonl(raw_dir / "gdelt_raw.jsonl", articles)
+        # Be polite to API
+        time.sleep(1)
 
     print("Fetch complete. Raw data stored at data/raw/gdelt_raw.jsonl")
 

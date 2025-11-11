@@ -36,6 +36,8 @@ def main(cfg_path):
 
     # Aggregate by period
     agg = topic_df.groupby("period").mean()
+    # Ensure output directories exist
+    Path("outputs/tables").mkdir(parents=True, exist_ok=True)
     agg.to_csv("outputs/tables/topic_period_distribution.csv")
 
     # Save top words per topic
