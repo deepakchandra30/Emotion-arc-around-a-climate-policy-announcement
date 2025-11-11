@@ -1,0 +1,196 @@
+{
+  "results": {
+    "logreg": {
+      "accuracy": 0.5,
+      "f1_macro": 0.3333333333333333,
+      "roc_auc": 0.0,
+      "confusion_matrix": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    "linear_svm": {
+      "accuracy": 0.5,
+      "f1_macro": 0.3333333333333333,
+      "roc_auc": null,
+      "confusion_matrix": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ]
+    }
+  },
+  "top_features": [
+    {
+      "feature": "to",
+      "coef": 0.1352882993023288
+    },
+    {
+      "feature": "accelerate",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "deployment and",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "release",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "clean energy",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "commit",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "pledge to",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "pledge",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "countries",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "countries commit",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "deployment",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "energy",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "clean",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "energy deployment",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "faster",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "leaders pledge",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "leaders",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "faster transition",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "ipcc release",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "improve resilience",
+      "coef": 0.0676441496511644
+    },
+    {
+      "feature": "ar6 report",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "nations debate",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "report policy",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "makers",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "makers consider",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "policy makers",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "policy",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "plans and",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "consider",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "consider ambitious",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "plans",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "mitigation strategies",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "of ar6",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "of",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "debate",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "debate mitigation",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "finance",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "finance for",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "nations",
+      "coef": -0.07107879080635232
+    },
+    {
+      "feature": "and finance",
+      "coef": -0.07107879080635232
+    }
+  ]
+}

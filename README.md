@@ -35,6 +35,10 @@ climate-emotion-arc/
    ```
    pip install -r requirements.txt
    ```
+  And install the spaCy English model:
+  ```
+  python -m spacy download en_core_web_sm
+  ```
 3. Download NRC Emotion Lexicon:
    - Visit: [NRC Emotion Lexicon](https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm)
    - Place file `NRC-Emotion-Lexicon-Wordlevel-v0.92.txt` into `data/lexicons/` (create if missing).
@@ -56,6 +60,8 @@ make emotion      # Compute NRC + VADER emotion aggregates
 make entities     # Entity-centric sentiment
 make ngram_shift  # Top shifting n-grams pre vs post
 make lda          # LDA topics and pre/post proportions
+make collocations # PMI bigram collocations (pre/post)
+make bow          # TF-IDF + Logistic Regression / Linear SVM baselines
 make figures      # Generate emotion arc & topic shift plots
 ```
 
@@ -64,12 +70,21 @@ Re-run everything (idempotent):
 make all
 ```
 
+For a quick demo run (small date window and faster settings):
+```
+make fast
+```
+
 ## Outputs
 - Emotion time series: `outputs/figures/emotion_arc.png`
 - Pre/Post emotion bar chart: `outputs/figures/emotion_bar.png`
 - Entity sentiment delta table: `outputs/tables/entity_sentiment.csv`
-- N-gram shift table: `outputs/tables/ngram_shift.csv`
+- N-gram shift tables: `outputs/tables/ngram_shift_positive.csv`, `outputs/tables/ngram_shift_negative.csv`
 - Topic proportion heatmap: `outputs/figures/topic_shift_heatmap.png`
+- Collocations (PMI): `outputs/tables/collocations_pre.csv`, `outputs/tables/collocations_post.csv`
+- BoW baselines metrics: `outputs/tables/bow_baselines_metrics.json`
+- Top TF-IDF features: `outputs/tables/tfidf_top_features.csv`
+- LSA 2D scatter: `outputs/figures/lsa_scatter.png`
 
 ## Hope Proxy
 "Hope" is approximated using NRC categories: Anticipation + Trust + Joy subset. See `emotion_counts.py` for mapping; you may refine with a curated lexicon in `configs/keywords.txt` (additional hope terms) or a separate file later.
