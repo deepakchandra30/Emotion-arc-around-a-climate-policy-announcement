@@ -1,14 +1,14 @@
 event_name: "IPCC AR6 Synthesis Report"
 event_date: "2023-03-20"        # Anchor date
-pre_days: 60
-post_days: 60
+pre_days: 30
+post_days: 30
 keywords_file: "configs/keywords.txt"
 language: "English"
 output_dir: "outputs"
 raw_dir: "data/raw"
 processed_dir: "data/processed"
 nrc_lexicon_path: "data/lexicons/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt"
-min_doc_chars: 400
+min_doc_chars: 80
 max_records_per_call: 250
 chunk_days: 1
 lda:

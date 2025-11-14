@@ -26,8 +26,9 @@ def main(cfg_path):
 
     ent_df = pd.DataFrame(rows)
     # Filter to frequent entities
+    min_freq = cfg.get("entity_min_freq", 15)
     counts = ent_df["entity"].value_counts()
-    freq_entities = counts[counts >= 15].index
+    freq_entities = counts[counts >= min_freq].index
     ent_df = ent_df[ent_df.entity.isin(freq_entities)]
 
     agg = ent_df.groupby(["entity","period"])["sentiment"].mean().unstack()

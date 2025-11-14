@@ -1,32 +1,32 @@
 {
   "results": {
     "logreg": {
-      "accuracy": 0.5,
-      "f1_macro": 0.3333333333333333,
+      "accuracy": 0.3333333333333333,
+      "f1_macro": 0.25,
       "roc_auc": 0.0,
       "confusion_matrix": [
         [
-          1,
-          0
+          0,
+          2
         ],
         [
-          1,
-          0
+          0,
+          1
         ]
       ]
     },
     "linear_svm": {
-      "accuracy": 0.5,
-      "f1_macro": 0.3333333333333333,
+      "accuracy": 0.3333333333333333,
+      "f1_macro": 0.25,
       "roc_auc": null,
       "confusion_matrix": [
         [
-          1,
-          0
+          0,
+          2
         ],
         [
-          1,
-          0
+          0,
+          1
         ]
       ]
     }
@@ -34,163 +34,163 @@
   "top_features": [
     {
       "feature": "to",
-      "coef": 0.1352882993023288
+      "coef": 0.17093754409006312
     },
     {
-      "feature": "accelerate",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "deployment and",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "release",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "clean energy",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "commit",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "pledge to",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "pledge",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "countries",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "countries commit",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "deployment",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "energy",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "clean",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "energy deployment",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "faster",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "leaders pledge",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "leaders",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "faster transition",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "ipcc release",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "improve resilience",
-      "coef": 0.0676441496511644
-    },
-    {
-      "feature": "ar6 report",
-      "coef": -0.07107879080635232
-    },
-    {
-      "feature": "nations debate",
-      "coef": -0.07107879080635232
-    },
-    {
-      "feature": "report policy",
-      "coef": -0.07107879080635232
-    },
-    {
-      "feature": "makers",
-      "coef": -0.07107879080635232
-    },
-    {
-      "feature": "makers consider",
-      "coef": -0.07107879080635232
-    },
-    {
-      "feature": "policy makers",
-      "coef": -0.07107879080635232
-    },
-    {
-      "feature": "policy",
-      "coef": -0.07107879080635232
-    },
-    {
-      "feature": "plans and",
-      "coef": -0.07107879080635232
-    },
-    {
-      "feature": "consider",
-      "coef": -0.07107879080635232
-    },
-    {
-      "feature": "consider ambitious",
-      "coef": -0.07107879080635232
-    },
-    {
-      "feature": "plans",
-      "coef": -0.07107879080635232
-    },
-    {
-      "feature": "mitigation strategies",
-      "coef": -0.07107879080635232
-    },
-    {
-      "feature": "of ar6",
-      "coef": -0.07107879080635232
-    },
-    {
-      "feature": "of",
-      "coef": -0.07107879080635232
-    },
-    {
-      "feature": "debate",
-      "coef": -0.07107879080635232
-    },
-    {
-      "feature": "debate mitigation",
-      "coef": -0.07107879080635232
+      "feature": "report",
+      "coef": 0.0705984970927266
     },
     {
       "feature": "finance",
-      "coef": -0.07107879080635232
+      "coef": 0.06800822401424805
     },
     {
-      "feature": "finance for",
-      "coef": -0.07107879080635232
+      "feature": "findings",
+      "coef": 0.06800822401424805
     },
     {
-      "feature": "nations",
-      "coef": -0.07107879080635232
+      "feature": "new report",
+      "coef": 0.06800822401424805
     },
     {
-      "feature": "and finance",
-      "coef": -0.07107879080635232
+      "feature": "emphasizes rapid",
+      "coef": 0.06800822401424805
+    },
+    {
+      "feature": "emphasizes",
+      "coef": 0.06800822401424805
+    },
+    {
+      "feature": "report released",
+      "coef": 0.06800822401424805
+    },
+    {
+      "feature": "report emphasizes",
+      "coef": 0.06800822401424805
+    },
+    {
+      "feature": "cuts adaptation",
+      "coef": 0.06800822401424805
+    },
+    {
+      "feature": "climate finance",
+      "coef": 0.06800822401424805
+    },
+    {
+      "feature": "released key",
+      "coef": 0.06800822401424805
+    },
+    {
+      "feature": "released",
+      "coef": 0.06800822401424805
+    },
+    {
+      "feature": "the new",
+      "coef": 0.06800822401424805
+    },
+    {
+      "feature": "and climate",
+      "coef": 0.06800822401424805
+    },
+    {
+      "feature": "findings the",
+      "coef": 0.06800822401424805
+    },
+    {
+      "feature": "adaptation measures",
+      "coef": 0.06800822401424805
+    },
+    {
+      "feature": "measures and",
+      "coef": 0.06800822401424805
+    },
+    {
+      "feature": "measures",
+      "coef": 0.06800822401424805
+    },
+    {
+      "feature": "key",
+      "coef": 0.06800822401424805
+    },
+    {
+      "feature": "of",
+      "coef": -0.1479890384248227
+    },
+    {
+      "feature": "ahead of",
+      "coef": -0.1479890384248227
+    },
+    {
+      "feature": "ahead",
+      "coef": -0.1479890384248227
+    },
+    {
+      "feature": "strategies ahead",
+      "coef": -0.07399451921241135
+    },
+    {
+      "feature": "debate",
+      "coef": -0.07399451921241135
+    },
+    {
+      "feature": "debate on",
+      "coef": -0.07399451921241135
+    },
+    {
+      "feature": "of ipcc",
+      "coef": -0.07399451921241135
+    },
+    {
+      "feature": "strategies",
+      "coef": -0.07399451921241135
+    },
+    {
+      "feature": "experts",
+      "coef": -0.07399451921241135
+    },
+    {
+      "feature": "experts discuss",
+      "coef": -0.07399451921241135
+    },
+    {
+      "feature": "intensifies",
+      "coef": -0.07399451921241135
+    },
+    {
+      "feature": "intensifies experts",
+      "coef": -0.07399451921241135
+    },
+    {
+      "feature": "mitigation intensifies",
+      "coef": -0.07399451921241135
+    },
+    {
+      "feature": "on climate",
+      "coef": -0.07399451921241135
+    },
+    {
+      "feature": "on",
+      "coef": -0.07399451921241135
+    },
+    {
+      "feature": "climate mitigation",
+      "coef": -0.07399451921241135
+    },
+    {
+      "feature": "ar6 debate",
+      "coef": -0.07399451921241135
+    },
+    {
+      "feature": "of the",
+      "coef": -0.07399451921241135
+    },
+    {
+      "feature": "adaptation strategies",
+      "coef": -0.07399451921241135
+    },
+    {
+      "feature": "mitigation",
+      "coef": -0.0630072546094873
     }
   ]
 }

@@ -1,4 +1,4 @@
-import requests, argparse, time
+import requests, argparse, time, sys
 from datetime import datetime, timedelta
 from pathlib import Path
 from tqdm import tqdm
@@ -6,17 +6,17 @@ from utils import load_config, load_keywords, daterange, write_jsonl
 
 BASE_URL = "https://api.gdeltproject.org/api/v2/doc/doc"
 
-def build_query_string(keywords):
-    # Simple OR across keywords plus ensure climate context.
-    parts = []
+def build_query_string(keywords, language=None, require_term=None):
+    # Original simple OR style for GDELT doc API: join keywords with +OR+
+    enc = []
     for kw in keywords:
-        kw_enc = kw.replace(" ", "+")
-        parts.append(kw_enc)
-    # Use OR logic; GDELT uses space as implicit AND; we combine with OR for breadth.
-    # Simplicity: join with OR operator.
-    return "+OR+".join(parts)
+        kw = kw.strip()
+        if not kw:
+            continue
+        enc.append(kw.replace(" ", "+"))
+    return "+OR+".join(enc)
 
-def fetch_chunk(query, start_dt, end_dt, max_records, max_retries=5):
+def fetch_chunk(query, start_dt, end_dt, max_records, max_retries=5, verbose=False):
     params = {
         "query": query,
         "mode": "ArtList",
@@ -28,28 +28,20 @@ def fetch_chunk(query, start_dt, end_dt, max_records, max_retries=5):
     backoff = 2
     for attempt in range(max_retries):
         try:
-            r = requests.get(BASE_URL, params=params, timeout=30)
+            r = requests.get(BASE_URL, params=params, timeout=40)
             if r.status_code == 429:
-                # rate limited
-                wait = backoff ** attempt
-                time.sleep(wait)
+                time.sleep(min(30, backoff ** attempt))
                 continue
             r.raise_for_status()
-            j = r.json()
-            return j.get("articles", [])
-        except requests.RequestException as e:
-            # transient error, backoff and retry
-            wait = backoff ** attempt
-            time.sleep(wait)
-            last_err = e
+            data = r.json().get("articles", [])
+            return data
+        except requests.RequestException:
+            time.sleep(min(30, backoff ** attempt))
+            last_err = r.status_code if 'r' in locals() else 'request error'
             continue
-    # If we got here, give up this window
-    try:
-        Path("data/raw/fetch_errors").mkdir(parents=True, exist_ok=True)
-        with open(Path("data/raw/fetch_errors")/f"{start_dt.strftime('%Y%m%d')}.err.txt", "a", encoding="utf-8") as f:
-            f.write(f"Failed window {start_dt} - {end_dt}: {str(last_err)}\n")
-    except Exception:
-        pass
+    Path("data/raw/fetch_errors").mkdir(parents=True, exist_ok=True)
+    with open(Path("data/raw/fetch_errors")/f"{start_dt.strftime('%Y%m%d')}.err.txt", "a", encoding="utf-8") as f:
+        f.write(f"Failed window {start_dt} - {end_dt}: {last_err}\n")
     return []
 
 def main(config_path):
@@ -69,7 +61,8 @@ def main(config_path):
     print(f"Fetching from {all_start.date()} to {all_end.date()} for query: {query}")
 
     # Day chunks
-    for day in tqdm(list(daterange(all_start, all_end, cfg["chunk_days"]))):
+    days = list(daterange(all_start, all_end, cfg["chunk_days"]))
+    for day in tqdm(days, desc="IPCC Days"):
         start_dt = datetime(day.year, day.month, day.day, 0, 0, 0)
         end_dt = start_dt + timedelta(days=cfg["chunk_days"]) - timedelta(seconds=1)
         articles = fetch_chunk(query, start_dt, end_dt, cfg["max_records_per_call"])
@@ -82,10 +75,14 @@ def main(config_path):
             a["period"] = "pre" if art_date < event_date else "post"
         if articles:
             write_jsonl(raw_dir / "gdelt_raw.jsonl", articles)
-        # Be polite to API
-        time.sleep(1)
+        else:
+            # Log empty day for diagnostics
+            Path("data/raw/fetch_errors").mkdir(parents=True, exist_ok=True)
+            with open(Path("data/raw/fetch_errors")/"empty_days.log", "a", encoding="utf-8") as f:
+                f.write(f"No articles for {start_dt.date()}\n")
+        time.sleep(1.5)  # polite spacing
 
-    print("Fetch complete. Raw data stored at data/raw/gdelt_raw.jsonl")
+    print("\nFetch complete. Raw data stored at data/raw/gdelt_raw.jsonl")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

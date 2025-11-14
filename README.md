@@ -70,11 +70,6 @@ Re-run everything (idempotent):
 make all
 ```
 
-For a quick demo run (small date window and faster settings):
-```
-make fast
-```
-
 ## Outputs
 - Emotion time series: `outputs/figures/emotion_arc.png`
 - Pre/Post emotion bar chart: `outputs/figures/emotion_bar.png`
